@@ -1,25 +1,29 @@
+//
+// Created by Shoupu Wan on 3/29/23.
+//
+
+#ifndef CPPSANDBOX_MUTUAL_POINTER_H
+#define CPPSANDBOX_MUTUAL_POINTER_H
+
 #include <iostream>
 #include <memory> // for std::shared_ptr
 #include <string>
 
-class Person
-{
+class Person {
     std::string m_name;
     std::shared_ptr<Person> m_partner; // initially created empty
 
 public:
 
-    Person(const std::string &name): m_name(name)
-    {
+    Person(const std::string &name) : m_name(name) {
         std::cout << m_name << " created\n";
     }
-    ~Person()
-    {
+
+    ~Person() {
         std::cout << m_name << " destroyed\n";
     }
 
-    friend bool partnerUp(std::shared_ptr<Person> &p1, std::shared_ptr<Person> &p2)
-    {
+    friend bool partnerUp(std::shared_ptr<Person> &p1, std::shared_ptr<Person> &p2) {
         if (!p1 || !p2)
             return false;
 
@@ -32,12 +36,13 @@ public:
     }
 };
 
-int demo_memory_leak()
-{
-    auto lucy { std::make_shared<Person>("Lucy") }; // create a Person named "Lucy"
-    auto ricky { std::make_shared<Person>("Ricky") }; // create a Person named "Ricky"
+int demo_memory_leak() {
+    auto lucy{std::make_shared<Person>("Lucy")}; // create a Person named "Lucy"
+    auto ricky{std::make_shared<Person>("Ricky")}; // create a Person named "Ricky"
 
     partnerUp(lucy, ricky); // Make "Lucy" point to "Ricky" and vice-versa
 
     return 0;
 }
+
+#endif //CPPSANDBOX_MUTUAL_POINTER_H
