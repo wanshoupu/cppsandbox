@@ -15,9 +15,19 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 
-add_executable(cppsandbox main.cpp demo_class_template.cpp demo_class_template.h circular_pointer_demo/mutual_pointer.h sequences/integer_seq.h circular_pointer_demo/reductive_version.h)
-
-add_executable(hello_test gtest/shared_ptr_tests.cpp)
+add_executable(cppsandbox
+        main.cpp
+        demo_class_template.cpp
+        demo_class_template.h
+        circular_pointer_demo/mutual_pointer.h
+        sequences/integer_seq.h
+        circular_pointer_demo/reductive_version.h)
+include_directories(build/ninja/_deps/googletest-src/googlemock/include)
+add_executable(hello_test
+        gtest_demo/shared_ptr_tests.cpp
+        gmock_demo/turtle.h
+        gmock_demo/gmock_test.cpp
+        gmock_demo/mock_turtle.cpp)
 target_link_libraries(hello_test GTest::gtest_main)
 
 include(GoogleTest)
