@@ -37,3 +37,16 @@ add_executable(gmock_demo
         )
 target_link_libraries(gmock_demo GTest::gmock_main)
 gtest_discover_tests(gmock_demo)
+
+find_package(Boost COMPONENTS
+        system
+        filesystem
+        unit_test_framework REQUIRED
+        )
+add_executable(boost_test boost_demo boost_demo/boost_test.cpp)
+target_link_libraries(boost_test
+        ${Boost_LIBRARIES}   # this is wildcard for all boost libraries
+        ${Boost_FILESYSTEM_LIBRARY}  # this corresponds to the above filesystem
+        ${Boost_SYSTEM_LIBRARY}  # this corresponds to system above
+        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} # this corresponds to the unit test framework
+        )
