@@ -60,7 +60,7 @@ int demo_int_sequence() {
 
     // print it to cout
     std::cout << "The tuple: " << tuple << '\n';
-
+    return 0;
 }
 
 #endif //CPPSANDBOX_INTEGER_SEQ_H
