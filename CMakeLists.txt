@@ -30,3 +30,12 @@ add_executable(gtest_demo
         )
 target_link_libraries(gtest_demo GTest::gtest_main)
 gtest_discover_tests(gtest_demo)
+
+add_executable(gmock_demo
+        gmock_demo/turtle.h
+        gmock_demo/gmock_test.cpp
+        gmock_demo/mock_turtle.cpp
+        gmock_demo/Painter.h
+        )
+target_link_libraries(gmock_demo GTest::gmock_main)
+gtest_discover_tests(gmock_demo)
