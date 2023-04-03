@@ -14,7 +14,6 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-
 add_executable(cppsandbox
         main.cpp
         demo_class_template.cpp
@@ -22,7 +21,6 @@ add_executable(cppsandbox
         circular_pointer_demo/mutual_pointer.h
         sequences/integer_seq.h
         circular_pointer_demo/reductive_version.h)
-include_directories(build/ninja/_deps/googletest-src/googlemock/include)
 include(GoogleTest)
 
 add_executable(gtest_demo
