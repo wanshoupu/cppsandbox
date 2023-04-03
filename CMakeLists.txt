@@ -23,12 +23,10 @@ add_executable(cppsandbox
         sequences/integer_seq.h
         circular_pointer_demo/reductive_version.h)
 include_directories(build/ninja/_deps/googletest-src/googlemock/include)
-add_executable(hello_test
-        gtest_demo/shared_ptr_tests.cpp
-        gmock_demo/turtle.h
-        gmock_demo/gmock_test.cpp
-        gmock_demo/mock_turtle.cpp)
-target_link_libraries(hello_test GTest::gtest_main)
-
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+
+add_executable(gtest_demo
+        gtest_demo/shared_ptr_tests.cpp
+        )
+target_link_libraries(gtest_demo GTest::gtest_main)
+gtest_discover_tests(gtest_demo)
