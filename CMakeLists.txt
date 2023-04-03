@@ -18,10 +18,7 @@ enable_testing()
 add_executable(cppsandbox main.cpp demo_class_template.cpp demo_class_template.h circular_pointer_demo/mutual_pointer.h sequences/integer_seq.h circular_pointer_demo/reductive_version.h)
 
 add_executable(hello_test gtest/shared_ptr_tests.cpp)
-target_link_libraries(
-        hello_test
-        GTest::gtest_main
-)
+target_link_libraries(hello_test GTest::gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(hello_test)

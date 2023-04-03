@@ -8,8 +8,7 @@ TEST(SharedPtrTest, NoMemoryLeak) {
     auto ricky{std::make_shared<Person>("Ricky")}; // create a Person named "Ricky"
     std::string output = testing::internal::GetCapturedStdout(); // get the captured output
     EXPECT_EQ(output,
-              "Lucy created\nRicky created\nLucy is now partnered with Ricky\n"); // assert that the output is as expected
-    std::cout << "end" << std::endl;
+              "Lucy created\nRicky created\n"); // assert that the output is as expected
 }
 
 TEST(SharedPtrTest, MemoryLeak) {
