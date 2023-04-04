@@ -15,23 +15,12 @@
 // string convert(string s, int numRows);
 //
 //
-// Example 1:
-//
-// Input: s = "PAYPALISHIRING", numRows = 3
-// Output: "PAHNAPLSIIGYIR"
-// Example 2:
-//
-// Input: s = "PAYPALISHIRING", numRows = 4
-// Output: "PINALSIGYAHRPI"
-// Explanation:
-// P     I    N
-// A   L S  I G
-// Y A   H R
-// P     I
-// Example 3:
-//
-// Input: s = "A", numRows = 1
-// Output: "A"
+// For a row of 5
+//1                  9                      17
+//2             8    10               16   18                24
+//3       7          11         15         19          23 
+//4   6              12   14               20    22
+//5                 13                    21
 #include <string>
 #include <algorithm>
 
@@ -61,27 +50,47 @@ namespace zigzag {
         return {concat.begin(), concat.end()};
     }
 
-    // TODO
     int Solution::row(int i, int n) {
-        auto mod = i % (n + 1);
-        if (mod == n) {
-            return 0;
+        int period = 2 * (n - 1);
+        auto mod = i % period;
+        if (mod < n) {
+            return mod;
         }
-        return 0;
+        return period - mod;
     }
 
 } // namespace zigzag
 
+// Example 1:
+//
+// Input: s = "PAYPALISHIRING", numRows = 3
+// P   A   H   N
+// A P L S I I G
+// Y   I   R
+// Output: "PAHNAPLSIIGYIR"
 TEST(Zigzag, HappyCase3) {
     zigzag::Solution sol;
     EXPECT_EQ(sol.convert("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR");
 }
 
+// Example 2:
+//
+// Input: s = "PAYPALISHIRING", numRows = 4
+// Output: "PINALSIGYAHRPI"
+// Explanation:
+// P     I    N
+// A   L S  I G
+// Y A   H R
+// P     I
 TEST(Zigzag, HappyCase4) {
     zigzag::Solution sol;
-    EXPECT_EQ(sol.convert("PAYPALISHIRING", 4), "PAHNAPLSIIGYIR");
+    EXPECT_EQ(sol.convert("PAYPALISHIRING", 4), "PINALSIGYAHRPI");
 }
 
+// Example 3:
+//
+// Input: s = "A", numRows = 1
+// Output: "A"
 TEST(Zigzag, EdgeCase) {
     zigzag::Solution sol;
     EXPECT_EQ(sol.convert("A", 1), "A");
