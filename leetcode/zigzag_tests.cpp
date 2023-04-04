@@ -52,6 +52,7 @@ namespace zigzag {
 
     int Solution::row(int i, int n) {
         int period = 2 * (n - 1);
+        if (period == 0) return 0;
         auto mod = i % period;
         if (mod < n) {
             return mod;
