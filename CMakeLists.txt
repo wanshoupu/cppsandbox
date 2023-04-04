@@ -34,6 +34,7 @@ add_executable(gmock_demo
         gmock_demo/gmock_test.cpp
         gmock_demo/mock_turtle.cpp
         gmock_demo/Painter.h
+        leetcode/zigzag_tests.cpp
         )
 target_link_libraries(gmock_demo GTest::gmock_main)
 gtest_discover_tests(gmock_demo)
@@ -43,7 +44,10 @@ find_package(Boost COMPONENTS
         filesystem
         unit_test_framework REQUIRED
         )
-add_executable(boost_test boost_demo boost_demo/boost_test.cpp)
+add_executable(boost_test
+        boost_demo/boost_test.cpp
+        )
+
 target_link_libraries(boost_test
         ${Boost_LIBRARIES}   # this is wildcard for all boost libraries
         ${Boost_FILESYSTEM_LIBRARY}  # this corresponds to the above filesystem
