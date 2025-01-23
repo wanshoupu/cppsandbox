@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.24)
 project(cppsandbox)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)  # Change to 17 or 20 if needed
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -46,7 +48,7 @@ find_package(Boost COMPONENTS
         )
 add_executable(boost_test
         boost_demo/boost_test.cpp
-        )
+        boost_demo/copilot_test.cpp boost_demo/copilot_test.h)
 
 target_link_libraries(boost_test
         ${Boost_LIBRARIES}   # this is wildcard for all boost libraries
