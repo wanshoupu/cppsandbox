@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 project(cppsandbox)
 
-set(CMAKE_CXX_STANDARD 20)  # Change to 17 or 20 if needed
+set(CMAKE_CXX_STANDARD 23)  # Change to 17 or 20 if needed
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

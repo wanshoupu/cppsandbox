@@ -1,8 +1,18 @@
 #include <iostream>
 #include <string>
+#include <span>
+#include <vector>
+#include <variant>
+#include <optional>
+#include <memory>
+#include <concepts>
+#include <algorithm>
+#include <functional>
+//#include <expected.hpp>
 
 #define ENUM_CLASS_NAME(EnumType) #EnumType
 #define ENUM_TO_STRING(value) #value
+
 
 enum class Color {
     Red,
@@ -18,9 +28,10 @@ std::unique_ptr<int> ptr = std::make_unique<int>(10);
 std::shared_ptr<int> ptr2 = std::make_shared<int>(20);
 
 constexpr std::string myname(int x) {
-    if (x == 0) {
+    int *ptr = new int(3);
+    if (x == ptr[0]) {
         return "zero";
-    } else if (x == 1) {
+    } else if (x == ptr[1]) {
         return "one";
     } else {
         return "unknown";
@@ -28,10 +39,9 @@ constexpr std::string myname(int x) {
 }
 
 auto lambda = [](int x) { return x * x; };
+//decltype(lambda) lambda2 = [](int x) { return x * x; };
 
 auto autolambda = [](auto x, auto y) { return x + y; };
-
-//decltype(lambda) lambda2 = [](int x) { return x * x; };
 
 std::variant<int, std::string> intstring = 42;
 std::optional<int> opt = std::nullopt;
@@ -46,6 +56,16 @@ void func(T value) {
 }
 
 int main() {
+    auto lambda = [](int x) { return x * x; };  // First lambda
+    std::function<int(int)> lambda2 = [lambda](int x) { return lambda(x); };  // use the defined lambda as captured variable
+    std::cout << lambda2(5) << std::endl;  // Should output 25
+
+    int arr[] = {1, 2, 3};
+    int length = sizeof(arr) / sizeof(arr[0]);
+    std::span<int> view(arr, length);
+    std::vector<int> vec = {3, 2, 1};
+    std::ranges::sort(vec);
+//    std::expected<int, std::string> result = square(5);
 
     std::cout << "Enum value: " << ENUM_TO_STRING(Color::Red) << std::endl;
     std::cout << "Enum value: " << int(Color::Red) << std::endl;
