@@ -1,64 +1,19 @@
-#include <iostream>
-#include <string>
-#include <span>
-#include <vector>
-#include <variant>
-#include <optional>
-#include <memory>
-#include <concepts>
-#include <algorithm>
-#include <functional>
+#include "demo_class_template.h"
+#include "demo_enum_class.h"
+#include "demo_constexpr.h"
+#include "demo_lambda.h"
 //#include <expected.hpp>
-
-#define ENUM_CLASS_NAME(EnumType) #EnumType
-#define ENUM_TO_STRING(value) #value
-
-
-enum class Color {
-    Red,
-    Green,
-    Blue
-};
-
-constexpr int square(int x) { return x * x; }
-
-using IntFunction = int (*)(int);
-
 std::unique_ptr<int> ptr = std::make_unique<int>(10);
 std::shared_ptr<int> ptr2 = std::make_shared<int>(20);
 
-constexpr std::string myname(int x) {
-    int *ptr = new int(3);
-    if (x == ptr[0]) {
-        return "zero";
-    } else if (x == ptr[1]) {
-        return "one";
-    } else {
-        return "unknown";
-    }
-}
-
-auto lambda = [](int x) { return x * x; };
-//decltype(lambda) lambda2 = [](int x) { return x * x; };
-
-auto autolambda = [](auto x, auto y) { return x + y; };
 
 std::variant<int, std::string> intstring = 42;
 std::optional<int> opt = std::nullopt;
 
 auto [a, b] = std::pair(1, 2);
 
-template<typename T>
-requires std::integral<T>
-void func(T value) {
-    std::cout << "restricted template type: " << value << std::endl;
-    if constexpr (std::is_integral_v<T>) { std::cout << "int is integral" << std::endl; }
-}
-
 int main() {
-    auto lambda = [](int x) { return x * x; };  // First lambda
-    std::function<int(int)> lambda2 = [lambda](int x) { return lambda(x); };  // use the defined lambda as captured variable
-    std::cout << lambda2(5) << std::endl;  // Should output 25
+    demo_lambda();
 
     int arr[] = {1, 2, 3};
     int length = sizeof(arr) / sizeof(arr[0]);
@@ -71,16 +26,12 @@ int main() {
     std::cout << "Enum value: " << int(Color::Red) << std::endl;
     std::cout << "Enum class name: " << ENUM_CLASS_NAME(Color) << std::endl;
     std::cout << "Square of 5: " << square(5) << std::endl;
-    std::cout << "Square of 5: " << lambda(5) << std::endl;
-    std::cout << "Square of 5: " << IntFunction(lambda)(5) << std::endl;
     std::cout << "My name: " << myname(5) << std::endl;
     std::cout << "Square of 5: " << *ptr << std::endl;
     std::cout << "Square of 5: " << *ptr2 << std::endl;
-    std::cout << "int + string: " << autolambda(5, "hello world") << std::endl;
-    std::cout << "int + int: " << autolambda(5, 5) << std::endl;
 //    std::cout << "variant int or string: " << get(intstring) << std::endl;
     std::cout << "optional: " << opt.value_or(3) << std::endl;
     std::cout << "pair: " << a << " " << b << std::endl;
-    func(int(Color::Blue));
+    my_func(int(Color::Blue));
     return 0;
 }

@@ -8,6 +8,18 @@
 
 #include <utility>
 
+#include <concepts>
+#include <span>
+#include <iostream>
+#include "demo_class_template.h"
+
+template<typename T>
+requires std::integral<T>
+void my_func(T value) {
+    std::cout << "restricted template type: " << value << std::endl;
+    if constexpr (std::__1::is_integral_v<T>) { std::cout << "int is integral" << std::endl; }
+}
+
 template<typename T>
 class demo_class_template {
 private:
