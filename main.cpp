@@ -26,6 +26,3 @@ int main() {
     //    std::expected<int, std::string> result = square(5);
     return 0;
 }
-
-
-
