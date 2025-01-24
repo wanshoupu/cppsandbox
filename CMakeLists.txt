@@ -20,6 +20,13 @@ add_executable(cppsandbox
         main.cpp
         demo_class_template.cpp
         demo_class_template.h
+        demo_constexpr.h
+        demo_optional.h
+        demo_ranges.h
+        demo_span.h
+        demo_structured_bindings.h
+        demo_variants.h
+
         circular_pointer_demo/mutual_pointer.h
         sequences/integer_seq.h
         circular_pointer_demo/reductive_version.h)
